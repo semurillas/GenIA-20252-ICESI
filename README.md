@@ -74,6 +74,7 @@ La elección del modelo se basa en un análisis de **costo-beneficio** centrado 
 Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada en el tráfico**, combinando modelos Fine-Tuned con modelos de Propósito General.
 
 ```mermaid
+
 graph TD
     subgraph "Entrada de Consulta"
         A[Cliente: Chat, Email, RRSS] --> B(Orquestador/Router);
