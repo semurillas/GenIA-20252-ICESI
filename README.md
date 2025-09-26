@@ -5,12 +5,12 @@ This repository will host all projects in the field of generative artificial int
 ```mermaid
 graph TD
     subgraph "Entrada de Consulta"
-        A[Cliente (Chat, Email, RRSS)] --> B(Módulo de Clasificación);
+        A[Cliente: Chat, Email, RRSS] --> B(Módulo de Clasificación);
     end
 
     subgraph "Flujo Automatizado (Respuestas Repetitivas)"
         subgraph "Clasificación (BART)"
-            B -- "80% Consultas Repetitivas" --> C[Consulta es sobre Pedido, Devolución, Producto];
+            B -- "80% Consultas Repetitivas" --> C[Pedido, Devolución, Producto];
         end
         subgraph "Respuestas Automáticas (T5)"
             C --> D[T5 se conecta a la Base de Datos de EcoMarket];
@@ -21,7 +21,7 @@ graph TD
 
     subgraph "Flujo Humano Asistido (Consultas Complejas)"
         subgraph "Clasificación (BART)"
-            B -- "20% Consultas Complejas" --> G[Consulta es sobre Queja, Problema Técnico];
+            B -- "20% Consultas Complejas" --> G[Queja, Problema Técnico];
         end
         subgraph "Asistente de IA (GPT-3.5)"
             G --> H[GPT-3.5 asiste al Agente de Soporte];
