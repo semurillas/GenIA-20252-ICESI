@@ -20,7 +20,8 @@
 ---
 # Fase I - Propuesta de Arquitectura IAG para Optimización del servicio al Cliente de la compañia EcoMarket
 
-Después de varias sesiones donde hemos revisado literatura y documentación de Modelos de LLM y teoría sobre Inteligencia Artificial Generativa, nos hemos decidido por una solución **“Híbrida”** para resolver los altos tiempos de respuesta, 24 horas en promedio, que está impactando a la compañía **EcoMarket** en la métrica de **Satisfacción del Cliente**.
+
+Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande (LLM) y la teoría de la Inteligencia Artificial Generativa, proponemos una solución **Híbrida**. Este enfoque busca mitigar el impacto negativo de los altos tiempos de respuesta (24 horas en promedio) en la métrica de **Satisfacción del Cliente** de la compañia **EcoMarket**
 
 ---
 
@@ -28,13 +29,13 @@ Después de varias sesiones donde hemos revisado literatura y documentación de 
 
 Nuestro Modelo Híbrido está compuesto por:
 
-1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas.  
-2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**).
+1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas. Opciones: GPT-4omini, Gemini 1.5 Flash, Mistral 7B Instruct 
+2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**). Opciones: GPT-4, Claude 3.5 Sonnet.
 
 ### ¿Por qué?
 
 Esta arquitectura permite que el modelo Fine-Tuned se enfoque en **eficiencia**, mientras que el LLM aporta **capacidad de comprensión** en consultas complejas.  
-Esto resolverá el problema más importante de EcoMarket: **reducir los tiempos de respuesta de 24 horas a minutos**.  
+Esto resolverá el problema más importante de EcoMarket: **reducir los tiempos de respuesta que hoy son de  24 horas  a minutos** con el uso de LLM .  
 
 En cuanto a costos, usar un esquema Híbrido permite:  
 - Operar con un **presupuesto moderado** para resolver la parte repetitiva.  
@@ -121,12 +122,13 @@ graph TD
    - Decide: ¿Es repetitiva (80%) o compleja (20%)?  
 
 2. **Ruta del 80% (Eficiencia):**  
-   - La consulta pasa al **Modelo Fine-Tuned**.  
+   - La consulta pasa al **Modelo Fine-Tuned LLM**.  
    - Este modelo integra una capa de **RAG (Retrieve Augmented Generation)** para consultar la base de datos de EcoMarket.  
 
 3. **Ruta del 20% (Capacidad):**  
-   - La consulta pasa al **Modelo Potente**.  
-   - Este modelo usa **Function Calling** para iniciar procesos especializados (ej: registrar una queja en el CRM o generar un ticket de soporte).  
+   - La consulta pasa al **Modelo Especializado LLM**.
+   - Este modelo usa **Function Calling** para iniciar procesos especializados (ej: registrar una queja en el CRM o generar un ticket de soporte).
+   - Si no puede responder debido a la complejidad de la pregunta, lo envia a un Agente de Call Center para atender
 
 ---
 
@@ -146,7 +148,7 @@ graph TD
 | **Costo** | Optimización del TCO. El 80% del tráfico va a un LLM Fine-Tuned económico (ej. Mistral 7B). Solo se paga un modelo premium para el 20% de casos críticos. |
 | **Escalabilidad** | Escalabilidad paralela: el 80% se maneja con clusters de modelos ligeros en GPUs económicas. El 20% escala en la nube de proveedores de LLM de alto nivel (OpenAI/Google). |
 | **Facilidad de Integración** | Uso de estándares como RAG y Function Calling, lo que simplifica el desarrollo y reduce la curva de aprendizaje del equipo de ingeniería. |
-| **Calidad de Respuesta** | Precisión garantizada en el 80% repetitivo (Fine-Tuning + RAG) y razonamiento superior en el 20% complejo (modelos avanzados). |
+| **Calidad de Respuesta** | Precisión garantizada en el 80% repetitivo (Fine-Tuning + RAG) y razonamiento superior en el 20% complejo (uso modelos avanzado). |
 
 ---
 
