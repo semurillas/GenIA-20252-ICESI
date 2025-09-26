@@ -18,7 +18,7 @@
 <h3>📅 Fecha: Septiembre 26, 2025</h3>
 
 ---
-# Fase I - Propuesta de Arquitectura Híbrida de Modelos LLM para EcoMarket
+# Fase I - Propuesta de Arquitectura IAG para Optimización servicio al Cliente de EcoMarket
 
 Después de varias sesiones donde hemos revisado literatura y documentación de Modelos de LLM y teoría sobre Inteligencia Artificial Generativa, nos hemos decidido por una solución **“Híbrida”** para resolver los altos tiempos de respuesta, 24 horas en promedio, que está impactando a la compañía **EcoMarket** en la métrica de **Satisfacción del Cliente**.
 
