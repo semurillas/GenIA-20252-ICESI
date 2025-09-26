@@ -21,7 +21,7 @@
 # Fase I - Propuesta de Arquitectura IAG para Optimización del servicio al Cliente de la compañia EcoMarket
 
 
-Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande (LLM) y la teoría de la Inteligencia Artificial Generativa, proponemos una solución **Híbrida**. Este enfoque busca mitigar el impacto negativo de los altos tiempos de respuesta (24 horas en promedio) en la métrica de **Satisfacción del Cliente** de la compañia **EcoMarket**
+Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande (LLM) y la teoría de la Inteligencia Artificial Generativa, nosotros proponemos una solución **Híbrida**. Este enfoque busca mitigar el impacto negativo de los altos tiempos de respuesta (24 horas en promedio) en la métrica de **Satisfacción del Cliente** de la compañia **EcoMarket**, en conjunto con un manejo costo-eficiencia, que es importante para la compañia.
 
 ---
 
@@ -29,8 +29,8 @@ Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande 
 
 Nuestro Modelo Híbrido está compuesto por:
 
-1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas. Opciones: GPT-4omini, Gemini 1.5 Flash, Mistral 7B Instruct 
-2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**). Opciones: GPT-4, Claude 3.5 Sonnet.
+1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas. Ejemplos: GPT-4omini, Gemini 1.5 Flash, Mistral 7B Instruct 
+2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**). Ejemplos: GPT-4, Claude 3.5 Sonnet.
 
 ### ¿Por qué?
 
@@ -53,7 +53,7 @@ La elección del modelo se basa en un análisis de **costo-beneficio** centrado 
 |-------------------------|---------------|
 | **Necesidad de Precisión** | Alta. Una respuesta incorrecta sobre el estado de un pedido (ej: "entregado" cuando está "en camino") es crítica para la satisfacción. |
 | **Ventaja del Afinamiento** | Al aplicar Fine-Tuning sobre un modelo ligero base (como Mistral 7B), el modelo aprende el vocabulario, la estructura de las preguntas frecuentes y el tono de EcoMarket. Esto permite rapidez y precisión en su dominio. |
-| **Costo Operacional** | Bajo. Los modelos ligeros son más baratos de alojar en infraestructura propia o en la nube. Solo se activan cuando se requieren, manejando eficientemente el grueso del tráfico. |
+| **Costo Operacional** | Bajo. Los modelos ligeros son más baratos de alojar en infraestructura propia o en la nube. Solo se activan cuando se requieren, manejando eficientemente el alto tamaño de preguntas que recibirá. |
 
 ---
 
@@ -64,14 +64,14 @@ La elección del modelo se basa en un análisis de **costo-beneficio** centrado 
 | Criterio               | Justificación |
 |-------------------------|---------------|
 | **Necesidad de Fluidez/Razonamiento** | Alta. Estas consultas exigen comprender el contexto emocional (empatía), sintetizar información de múltiples fuentes y seguir instrucciones complejas. |
-| **Ventaja de Rendimiento** | Modelos como GPT-4o y Gemini 1.5 Pro poseen razonamiento en cadena (*chain-of-thought*) y uso de herramientas (*Function Calling*). Esto permite clasificar y derivar quejas a los agentes correctos, con un resumen pre-analizado. |
-| **Costo Operacional** | Moderado/Alto. El costo por token es mayor, pero al representar solo el 20% del volumen de tráfico, la inversión se justifica porque impacta directamente en la **Satisfacción del Cliente (CSAT)**. |
+| **Ventaja de Rendimiento** | Modelos como GPT-4o y Gemini 1.5 Pro poseen razonamiento en cadena (*chain-of-thought*) y uso de herramientas (*Function Calling*). Esto es esencial para clasificar correctamente la queja y determinar a qué agente o departamento derivarla, proporcionando al humano un resumen pre-analizado. |
+| **Costo Operacional** | Moderado/Alto. El costo por token es mayor, pero al representar solo el 20% del volumen de tráfico, la inversión se justifica porque impacta directamente en la **Satisfacción del Cliente**. |
 
 ---
 
 ## 2. Arquitectura Propuesta
 
-Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada en el tráfico**, combinando modelos Fine-Tuned con modelos de Propósito General.
+Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada en el tráfico**, combinando modelos Fine-Tuned con LLM de Propósito General.
 
 ```mermaid
 graph TD
@@ -116,20 +116,20 @@ graph TD
 ```
 ### 2.1. Arquitectura Lógica
 
-1. **Orquestador/Router:**  
+1. **Orquestador/Enrutador:**  
    - Recibe cada consulta del cliente.  
    - Usa un modelo ligero (ej: *GPT-4o Mini*) afinado para clasificación.  
    - Decide: ¿Es repetitiva (80%) o compleja (20%)?  
 
 2. **Ruta del 80% (Eficiencia):**  
-   - La consulta pasa al **Modelo Fine-Tuned LLM**.  
-   - Este modelo integra una capa de **RAG (Retrieve Augmented Generation)** para consultar la base de datos de EcoMarket.  
+   - La consulta pasa al **Modelo Fine-Tuned LLM**.
+   - Este modelo integra una capa de **Generación Aumentada por Recuperación (RAG)** para interactuar con la Base de Datos de EcoMarket (solo lectura de datos estáticos y fácticos, ej. estados de envío, descripción de productos, devoluciones).
 
-3. **Ruta del 20% (Capacidad):**  
-   - La consulta pasa al **Modelo Especializado LLM**.
-   - Este modelo usa **Function Calling** para iniciar procesos especializados (ej: registrar una queja en el CRM o generar un ticket de soporte).
-   - Si no puede responder debido a la complejidad de la pregunta, lo envia a un Agente de Call Center para atender
-
+3. **Ruta del 20% (Capacidad):**
+   - Si es compleja, la consulta pasa al **Modelo LLM**.
+   - Este modelo usa la funcionalidad de Llamada a Funciones **(Function Calling)** para iniciar procesos especializados (ej: registrar una queja en el CRM o generar un ticket de soporte).
+   - Si el modelo determina que la pregunta supera su capacidad de resolución (ej. requiere una negociación con el cliente), lo envía a un Agente de Call Center, acompañado de un **resumen** y un **sentiment score**.
+   
 ---
 
 ### 2.2. Integración con la Base de Datos (BD) de EcoMarket
@@ -137,7 +137,7 @@ graph TD
 | Mecanismo de Integración | Propósito | Aplicación en EcoMarket |
 |--------------------------|-----------|--------------------------|
 | **RAG (Retrieve Augmented Generation)** | Consultar datos en tiempo real (solo lectura). | Estado del pedido, información de envío, inventario y catálogo. |
-| **Function Calling / Herramientas** | Ejecutar acciones o registrar datos (lectura y escritura). | Registrar devoluciones, actualizar quejas o ejecutar scripts de diagnóstico. |
+| **Function Calling / Herramientas** | Ejecutar acciones o registrar datos (lectura y escritura). | Registrar una devolución, actualizar el status de una queja, o ejecutar un script de diagnóstico para un problema técnico, ej.: Pedido no registrado, falla en acceso al portal de Ecomarket, etc. |
 
 ---
 
