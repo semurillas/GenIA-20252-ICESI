@@ -1,14 +1,15 @@
-# UNIVERSIDAD ICESI
+
+<h1> <img width="207" height="112" alt="image" src="https://github.com/user-attachments/assets/89fd906b-04fb-4d4f-b5e6-8375083a8a01" />
+UNIVERSIDAD ICESI </h1>
 <h1>📚 Maestría en Inteligencia Artificial Aplicada – 3er Semestre</h1>
 
 <h3>Asignatura: Inteligencia Artificial Generativa</h3>
 
-<h4>Taller Práctico Nro. 1 </h4>
-
+<h3>Taller Práctico Nro. 1 </h3>
 
 <hr style="width:60%;">
 
-<h2>👨‍🎓 Estudiantes</h2>
+<h3>👨‍🎓 Estudiantes</h3>
 <ul style="list-style:none; padding:0; font-size:18px;">
     <li>Sebastián Murillas</li>
     <li>Octavio Guerra</li>
