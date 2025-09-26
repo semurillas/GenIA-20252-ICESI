@@ -19,7 +19,7 @@
 <h3>📅 Fecha: Septiembre 26, 2025</h3>
 
 ---
-# Propuesta de Arquitectura Híbrida de Modelos LLM para EcoMarket
+# Fase I - Propuesta de Arquitectura Híbrida de Modelos LLM para EcoMarket
 
 Después de varias sesiones donde hemos revisado literatura y documentación de Modelos de LLM y teoría sobre Inteligencia Artificial Generativa, nos hemos decidido por una solución **“Híbrida”** para resolver los altos tiempos de respuesta, 24 horas en promedio, que está impactando a la compañía **EcoMarket** en la métrica de **Satisfacción del Cliente**.
 
@@ -140,15 +140,7 @@ graph TD
 
 ---
 
-### 2.3. Propósito del Modelo
-
-El sistema propuesto combina:  
-- **Modelo de propósito general** (el Router y el 20%),  
-- **Datos específicos de la empresa** (80% mediante Fine-Tuning y RAG).  
-
----
-
-## 3. Justificación Basada en Criterios de Ingeniería
+## 3. Justificación
 
 | Criterio               | Justificación |
 |-------------------------|---------------|
@@ -158,4 +150,7 @@ El sistema propuesto combina:
 | **Calidad de Respuesta** | Precisión garantizada en el 80% repetitivo (Fine-Tuning + RAG) y razonamiento superior en el 20% complejo (modelos avanzados). |
 
 ---
+
+# Fase II - Evaluación de Fortalezas, Limitaciones y Riesgos Éticos
+
 
