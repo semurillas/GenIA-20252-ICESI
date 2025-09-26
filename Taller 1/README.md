@@ -154,3 +154,49 @@ graph TD
 
 # Fase II - Evaluación de Fortalezas, Limitaciones y Riesgos Éticos
 
+### 4. Fortalezas
+- **Reducción en los Tiempos de Respuesta de Servicio al Cliente:**  
+  Es definitivamente el principal beneficio. El 80% de las consultas se resuelven en minutos, no en horas, impactando de manera benéfica la métrica **Satisfacción del Cliente**.
+
+- **Disponibilidad 24/7:**  
+  Por ser un modelo "Fine Tuned LLM", estará disponible de manera continua, 7x24, para manejar el alto volumen de consultas repetitivas. Esto de nuevo, redunda de manera positiva en la **Satisfacción al Cliente**.
+
+- **Coherencia y Consistencia:**  
+  Se asegura una única fuente de información para el 80% de las preguntas, eliminando las variaciones y errores que surgen de la respuesta humana. En otras palabras, reducción en las respuestas erróneas, inconsistentes o demoras en las respuestas.
+
+- **Especialización de la Labor del Agente Humano:**  
+  Los agentes se liberan del trabajo repetitivo, pudiendo enfocarse solo en el 20% de los casos complejos, donde su empatía y pensamiento crítico son realmente valiosos.
+
+---
+
+### 5. Limitaciones
+- **Limitación en la Empatía:**  
+  Si bien se ofrece un "fine tuned LLM" al igual que un Modelo LLM para responder a lo repetitivo y lo complejo. En los casos donde se requiere negociación o manejo de crisis, estos modelos no pueden replicar la inteligencia emocional de un agente humano. Es por eso, que el Agente de Call Center debe atender al cliente en estas situaciones.
+
+- **Dependencia en la Calidad de los Datos:**  
+  Si queremos contar con una precisión mayor o igual al 80%, dependeremos completamente de la exactitud y limpieza de la **Base de Datos de EcoMarket**.  
+  Si hay errores, información incompleta, muy pocos datos o inventados, el **LLM Fine-Tuned** generará respuestas erroneas o equivocadas. Esto afectara la **Satisfacción al Cliente** y pondrá en riesgo la reputación de la compañia. Es lo siempre se maneja como lema con la Inteligencia Artificial: **Basura (Garbage)** genera **Basura (Garbage)**
+
+- **Costos de Entrenamiento (Fine-Tuning):**  
+  La inversión inicial en tiempo y recursos para afinar y hostear el modelo y genere una precisión mayor o igual al 80% puede ser significativa.Pero creemos que será menor a usar un modelo LLM que tiene costos de Tokens y llamadas API. Aquí sera importante, planear adecuadamente para que los costos no sean altos y echen por tierra este proyecto.
+
+---
+
+### 6. Riesgos Éticos y de Gobierno
+- **Alucinaciones:**  
+  Siempre existe el riesgo de que LM  invente información (una *"alucinación"*) al generar datos de pedidos, productos, un resumen o un diagnóstico complejo.  
+  *Mitigación:* Implementar filtros de verificación de hechos en la fase de **Function Calling** antes de generar la respuesta al cliente y mecanismo de validación de respuestas a las preguntas repetitivas.
+
+- **Sesgo:**  
+  Si los datos utilizados para el Fine-Tuning contienen sesgos históricos (ej. si las quejas de un grupo demográfico específico fueron mal manejadas históricamente), el modelo podría perpetuar y automatizar ese trato preferencial o injusto.  
+  *Mitigación:* Auditoría de sesgos en el dataset de entrenamiento y en las respuestas generadas.
+
+- **Privacidad de Datos:**  
+  Al integrar la BD de clientes (direcciones, historial de compras, entre otros) en el contexto de los prompts (ya sea **RAG** o **Function Calling**), se debe asegurar que:  
+  1. Los datos están anonimizados o se accede solo a la información mínima necesaria.  
+  2. Se implementa un estricto control de acceso y almacenamiento temporal del contexto (*borrado inmediato después de la respuesta*).
+  3. Autenticación de usuarios para identificar quién accede y tener una auditoría de todo el flujo de interacción.
+  4. Usar un "Servicio Intermedio" para evitar que alguno de los modelos LLM usados interactué directamente con la o las bases de datos de **EcoMarket**
+
+- **Impacto Laboral:**
+  Los cambios Tecnologicos o de algun otro tipo en las compañias siempre generan incertidumbre en la fuerza laboral activa en ella. Tenemos clara que habrá reducción del personal actual de Agentes usado para el servicio al cliente. Debemos manter como objetivo claro: que se trata de **mejorar, empoderar y no reemplazar**. La propuesta debe ser vista por EcoMarket como una herramienta que eleva el trabajo de los agentes de soporte, permitiéndoles enfocarse en la calidad y la retención del cliente, en lugar de en la cantidad de tickets repetitivos que son lo que a hoy esta desbordado, haciendolo ineficiente y alta tasa de insatisfacción de los clientes; crítico para una compañia emergente como EcoMarket.
