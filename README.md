@@ -1,6 +1,5 @@
 
-<h1> <img width="207" height="112" alt="image" src="https://github.com/user-attachments/assets/89fd906b-04fb-4d4f-b5e6-8375083a8a01" />
-UNIVERSIDAD ICESI </h1>
+<h1> <img width="207" height="112" alt="image" src="https://github.com/user-attachments/assets/89fd906b-04fb-4d4f-b5e6-8375083a8a01" /></h1>
 <h1>📚 Maestría en Inteligencia Artificial Aplicada – 3er Semestre</h1>
 
 <h3>Asignatura: Inteligencia Artificial Generativa</h3>
