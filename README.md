@@ -2,7 +2,7 @@
 This repository will host all projects in the field of generative artificial intelligence.
 
 
-```mermaid
+```
 graph TD
     subgraph "Entrada de Consulta"
         A[Cliente (Chat, Email, RRSS)] --> B(Módulo de Clasificación);
@@ -42,4 +42,4 @@ graph TD
     style I fill:#F6C0C0,stroke:#333,stroke-width:2px;
     style J fill:#F6C0C0,stroke:#333,stroke-width:2px;
     style K fill:#F6C0C0,stroke:#333,stroke-width:2px;
-```mermaid
+```
