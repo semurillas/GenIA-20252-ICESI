@@ -1,5 +1,23 @@
-# GenIA-20252-ICESI
-This repository will host all projects in the field of generative artificial intelligence.
+# UNIVERSIDAD ICESI
+<h1>📚 Maestría en Inteligencia Artificial Aplicada – 3er Semestre</h1>
+
+<h3>Asignatura: Inteligencia Artificial Generativa</h3>
+
+<h4>Taller Práctico Nro. 1 </h4>
+
+
+<hr style="width:60%;">
+
+<h2>👨‍🎓 Estudiantes</h2>
+<ul style="list-style:none; padding:0; font-size:18px;">
+    <li>Sebastián Murillas</li>
+    <li>Octavio Guerra</li>
+</ul>
+
+<hr style="width:60%;">
+
+<h3>📅 Fecha: Septiembre 26, 2025</h3>
+
 
 # Propuesta de Arquitectura Híbrida de Modelos LLM para EcoMarket
 
