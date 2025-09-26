@@ -29,7 +29,7 @@ Después de varias sesiones donde hemos revisado literatura y documentación de 
 Nuestro Modelo Híbrido está compuesto por:
 
 1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas.  
-2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas.
+2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**).
 
 ### ¿Por qué?
 
