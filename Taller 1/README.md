@@ -182,7 +182,7 @@ graph TD
 
 ---
 
-### 6. Riesgos Éticos y de Gobierno
+### 6. Riesgos Éticos y de Gobernanza de Datos
 - **Alucinaciones:**  
   Siempre existe el riesgo de que LM  invente información (una *"alucinación"*) al generar datos de pedidos, productos, un resumen o un diagnóstico complejo.  
   *Mitigación:* Implementar filtros de verificación de hechos en la fase de **Function Calling** antes de generar la respuesta al cliente y mecanismo de validación de respuestas a las preguntas repetitivas.
