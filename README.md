@@ -76,26 +76,26 @@ Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada e
 ```mermaid
 graph TD
     subgraph "Entrada de Consulta"
-        A[Cliente: Chat, Email, RRSS] --> B(Orquestador/Router);
+        A["Cliente: Chat, Email, RRSS"] --> B["Orquestador / Router"];
     end
 
-    subgraph "Clasificación (Router Ligero)"
-        B -- "80% Consultas Repetitivas" --> C[Pedidos, Devoluciones, Catálogo];
-        B -- "20% Consultas Complejas" --> G[Quejas, Problemas, Sugerencias];
+    subgraph "Clasificación - Router Ligero"
+        B -- "80% Consultas Repetitivas" --> C["Pedidos, Devoluciones, Catálogo"];
+        B -- "20% Consultas Complejas" --> G["Quejas, Problemas, Sugerencias"];
     end
 
-    subgraph "Ruta 80% (Eficiencia: Consultas Repetitivas)"
-        C --> D[LLM Fine-Tuned (Ej: Mistral 7B, LLaMA 2-7B)];
-        D --> E[RAG: Conexión a BD de EcoMarket];
-        E --> F[Genera Respuesta Personalizada];
-        F --> Z[Respuesta Automática Enviada al Cliente];
+    subgraph "Ruta 80% - Consultas Repetitivas"
+        C --> D["LLM Fine-Tuned - Ej: Mistral 7B, LLaMA 2-7B"];
+        D --> E["RAG conectado a BD de EcoMarket"];
+        E --> F["Genera Respuesta Personalizada"];
+        F --> Z["Respuesta Automática Enviada al Cliente"];
     end
 
-    subgraph "Ruta 20% (Capacidad: Consultas Complejas)"
-        G --> H[LLM Potente (Ej: GPT-4o, Gemini 1.5 Pro, Claude 3 Opus)];
-        H --> I[Function Calling / Integración CRM & Tickets];
-        I --> J[Genera Resumen/Acción];
-        J --> K[Agente Humano (si aplica) Ajusta y Envía];
+    subgraph "Ruta 20% - Consultas Complejas"
+        G --> H["LLM Potente - Ej: GPT-4o, Gemini 1.5 Pro, Claude 3 Opus"];
+        H --> I["Function Calling / Integración CRM & Tickets"];
+        I --> J["Genera Resumen o Acción"];
+        J --> K["Agente Humano Ajusta y Envía"];
     end
 
     %% Estilos
