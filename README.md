@@ -2,6 +2,7 @@
 This repository will host all projects in the field of generative artificial intelligence.
 
 
+```mermaid
 graph TD
     subgraph "Entrada de Consulta"
         A[Cliente (Chat, Email, RRSS)] --> B{Módulo de Clasificación};
@@ -47,3 +48,4 @@ graph TD
 
     classDef proceso fill:#e0f7fa,stroke:#333;
     class A,G,L proceso;
+```mermaid
