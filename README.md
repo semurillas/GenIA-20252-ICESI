@@ -73,6 +73,48 @@ La elección del modelo se basa en un análisis de **costo-beneficio** centrado 
 
 Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada en el tráfico**, combinando modelos Fine-Tuned con modelos de Propósito General.
 
+```mermaid
+graph TD
+    subgraph "Entrada de Consulta"
+        A[Cliente: Chat, Email, RRSS] --> B(Orquestador/Router);
+    end
+
+    subgraph "Clasificación (Router Ligero)"
+        B -- "80% Consultas Repetitivas" --> C[Pedidos, Devoluciones, Catálogo];
+        B -- "20% Consultas Complejas" --> G[Quejas, Problemas, Sugerencias];
+    end
+
+    subgraph "Ruta 80% (Eficiencia: Consultas Repetitivas)"
+        C --> D[LLM Fine-Tuned (Ej: Mistral 7B, LLaMA 2-7B)];
+        D --> E[RAG: Conexión a BD de EcoMarket];
+        E --> F[Genera Respuesta Personalizada];
+        F --> Z[Respuesta Automática Enviada al Cliente];
+    end
+
+    subgraph "Ruta 20% (Capacidad: Consultas Complejas)"
+        G --> H[LLM Potente (Ej: GPT-4o, Gemini 1.5 Pro, Claude 3 Opus)];
+        H --> I[Function Calling / Integración CRM & Tickets];
+        I --> J[Genera Resumen/Acción];
+        J --> K[Agente Humano (si aplica) Ajusta y Envía];
+    end
+
+    %% Estilos
+    style A fill:#D4E6F1,stroke:#333,stroke-width:2px;
+    style B fill:#AED6F1,stroke:#333,stroke-width:2px;
+
+    style C fill:#C0F6C0,stroke:#333,stroke-width:2px;
+    style D fill:#C0F6C0,stroke:#333,stroke-width:2px;
+    style E fill:#C0F6C0,stroke:#333,stroke-width:2px;
+    style F fill:#C0F6C0,stroke:#333,stroke-width:2px;
+    style Z fill:#D4E6F1,stroke:#333,stroke-width:2px;
+
+    style G fill:#F6C0C0,stroke:#333,stroke-width:2px;
+    style H fill:#F6C0C0,stroke:#333,stroke-width:2px;
+    style I fill:#F6C0C0,stroke:#333,stroke-width:2px;
+    style J fill:#F6C0C0,stroke:#333,stroke-width:2px;
+    style K fill:#F6C0C0,stroke:#333,stroke-width:2px;
+```
+
 ### 2.1. Arquitectura Lógica
 
 1. **Orquestador/Router:**  
@@ -118,44 +160,3 @@ El sistema propuesto combina:
 
 ---
 
-```mermaid
-graph TD
-    subgraph "Entrada de Consulta"
-        A[Cliente: Chat, Email, RRSS] --> B(Módulo de Clasificación);
-    end
-
-    subgraph "Flujo Automatizado (Respuestas Repetitivas)"
-        subgraph "Clasificación (BART)"
-            B -- "80% Consultas Repetitivas" --> C[Pedido, Devolución, Producto];
-        end
-        subgraph "Respuestas Automáticas (T5)"
-            C --> D[T5 se conecta a la Base de Datos de EcoMarket];
-            D --> E[Genera Respuesta Personalizada];
-            E --> F[Respuesta Rápida Enviada al Cliente];
-        end
-    end
-
-    subgraph "Flujo Humano Asistido (Consultas Complejas)"
-        subgraph "Clasificación (BART)"
-            B -- "20% Consultas Complejas" --> G[Queja, Problema Técnico];
-        end
-        subgraph "Asistente de IA (GPT-3.5)"
-            G --> H[GPT-3.5 asiste al Agente de Soporte];
-            H --> I[Genera Borradores de Respuesta y Resúmenes];
-            I --> J[Agente Humano Edita y Personaliza];
-            J --> K[Respuesta con Empatía Enviada al Cliente];
-        end
-    end
-
-    style A fill:#D4E6F1,stroke:#333,stroke-width:2px;
-    style B fill:#AED6F1,stroke:#333,stroke-width:2px;
-    style C fill:#C0F6C0,stroke:#333,stroke-width:2px;
-    style D fill:#C0F6C0,stroke:#333,stroke-width:2px;
-    style E fill:#C0F6C0,stroke:#333,stroke-width:2px;
-    style F fill:#D4E6F1,stroke:#333,stroke-width:2px;
-    style G fill:#F6C0C0,stroke:#333,stroke-width:2px;
-    style H fill:#F6C0C0,stroke:#333,stroke-width:2px;
-    style I fill:#F6C0C0,stroke:#333,stroke-width:2px;
-    style J fill:#F6C0C0,stroke:#333,stroke-width:2px;
-    style K fill:#F6C0C0,stroke:#333,stroke-width:2px;
-```
