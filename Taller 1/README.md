@@ -229,30 +229,43 @@ Respuesta:
 
   ### 2. Devolución de Producto
 
-     prompt = f"""
-Actúa como un agente de servicio al cliente amable y profesional.
-Usa la siguiente base de datos de productos:
+     prompt = 
+     f"""
+     Actúa como un agente de servicio al cliente amable y profesional.
+      Usa la siguiente base de datos de productos:
 
-{base_datos_devoluciones}
+     {base_datos_devoluciones}
 
-Instrucciones para el Asistente:
-1. Responde inmediatamente al cliente siguiendo las instrucciones de formato.
-2. Identifica el producto por su ID (ej. Producto 2002) y su nombre.
-3. Revisa si el producto es retornable.
-4. Si es retornable, indica **Retornable** y explica el proceso.
-5. Si NO es retornable, indica **No retornable**, explica la razón y ofrece alternativas/descuentos.
-6. Da la respuesta en el siguiente formato:
-    - **Estado del producto**: (Retornable / No retornable)
-    - **Explicación**
-    - **Siguientes pasos / Alternativas**
-7. Mantén la respuesta clara y concisa, máximo 5 párrafos.
-8. Usa un tono cálido, humano y profesional.
+     Instrucciones para el Asistente:
+     1. Responde inmediatamente al cliente siguiendo las instrucciones de formato.
+     2. Identifica el producto por su ID (ej. Producto 2002) y su nombre.
+     3. Revisa si el producto es retornable.
+     4. Si es retornable, indica **Retornable** y explica el proceso.
+     5. Si NO es retornable, indica **No retornable**, explica la razón y ofrece alternativas/descuentos.
+     6. Da la respuesta en el siguiente formato:
+      - **Estado del producto**: (Retornable / No retornable)
+      - **Explicación**
+      - **Siguientes pasos / Alternativas**
+    7. Mantén la respuesta clara y concisa, máximo 5 párrafos.
+    8. Usa un tono cálido, humano y profesional.
 
----
-Cliente: Hola, estoy devolviendo {producto_buscado} por {motivo}, ¿qué debo hacer?
+    ---
+    Cliente: Hola, estoy devolviendo {producto_buscado} por {motivo}, ¿qué debo hacer?
 
-{MARCADOR_ASISTENTE}"""
+    {MARCADOR_ASISTENTE}"""
 
 ### 3. Prueba de los PROMPTS
 
-En este Repositorio de GitHub hay un Google Colab Notebook que se llama **IAG_Taller1_Fase_3.ipynb**, donde hicimos las pruebas con los dos (2) Prompts diseñados. Para correerlo es solo dar "Clic" con el ratón en el icono "Open Google Colab" que aparece en el archivo.
+En este Repositorio de GitHub hay un Google Colab Notebook que se llama **IAG_Taller1_Fase_3.ipynb**, donde hicimos las pruebas con los dos (2) Prompts diseñados. 
+El LLM (Large Language Model) que usamos fue: mistralai/Mistral-7B-Instruct-v0.2. 
+
+¿Por qué este LLM ?
+De los modelos que consultamos y revisamos, seleccionamos este por las siguientes razones:
+- Fue ajustado (fine-tuned) con ejemplos de instrucciones y respuestas humanas.
+- Está optimizado para seguir prompts tipo instrucciones, como los que tú estás usando:
+    - “Actúa como un agente de servicio al cliente…”
+    - “Responde en formato claro y conciso…”
+    - “Devuélveme solo este campo…”
+- Y Produce respuestas más estructuradas, coherentes y útiles.
+
+Para ejcutarlo solo se requiere dar "Clic" con el ratón en el icono "Open Google Colab" que aparece en el mismo archivo.
