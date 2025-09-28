@@ -270,4 +270,4 @@ De los modelos que consultamos y revisamos, seleccionamos este en especial por l
 - Y por último, pudimos notar que produce respuestas más estructuradas, coherentes y útiles en comparación con un modelo de transformers con BERT e inclusive algunos modelos de Generación de Texto.
 
 ### 4. Ejecución del Google Colab Notebook.
-Para ejcutarlo solo se requiere dar **"Clic"** con el ratón en el icono **"Open Google Colab"** que aparece en el archivo **IAG_Taller1_Fase_3.ipynb**
+El archivo **IAG_Taller1_Fase_3.ipynb** incluye un icono **"Open Google Colab"**. Solo es darle *Clic* en el ícono, que lo abrirá en Google Colab, y ejecutar una a una las celdas de código de manera secuencial de arriba hacia abajo. 
