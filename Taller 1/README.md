@@ -15,7 +15,7 @@
 
 <hr style="width:60%;">
 
-<h3>📅 Fecha: Septiembre 26, 2025</h3>
+<h3>📅 Fecha: Septiembre 28, 2025</h3>
 
 ---
 # Fase I - Propuesta de Arquitectura IAG para Optimización del servicio al Cliente de la compañia EcoMarket
