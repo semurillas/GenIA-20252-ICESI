@@ -21,7 +21,7 @@
 # Fase I - Propuesta de Arquitectura IAG para Optimización del servicio al Cliente de la compañia EcoMarket
 
 
-Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande (LLM) y la teoría de la Inteligencia Artificial Generativa, nosotros proponemos una solución **Híbrida**. Este enfoque busca mitigar el impacto negativo de los altos tiempos de respuesta (24 horas en promedio) en la métrica de **Satisfacción del Cliente** de la compañia **EcoMarket**, en conjunto con un manejo costo-eficiencia, que es importante para la compañia.
+Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande (LLM) y la teoría de la Inteligencia Artificial Generativa, nosotros proponemos una solución **Híbrida**. Este enfoque busca mitigar el impacto negativo de los altos tiempos de respuesta (24 horas en promedio) en la métrica de **Satisfacción al Cliente** de la compañia **EcoMarket**, en conjunto con un manejo costo-eficiencia, que es también importante para la compañia.
 
 ---
 
@@ -29,19 +29,18 @@ Tras revisar la literatura y la documentación sobre Modelos de Lenguaje Grande 
 
 Nuestro Modelo Híbrido está compuesto por:
 
-1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas. Ejemplos: GPT-4omini, Gemini 1.5 Flash, Mistral 7B Instruct 
-2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**). Ejemplos: GPT-4, Claude 3.5 Sonnet.
+1. **Modelo Fine Tuned LLM**, para atender el **80%** de las consultas repetitivas. Ejemplos posibles de uso: GPT-4omini, Gemini 1.5 Flash, Mistral 7B Instruct 
+2. **Modelo LLM** de propósito general, para atender las consultas o preguntas complejas (**20%**). Ejemplos posibles de uso: GPT-4, Claude 3.5 Sonnet.
 
 ### ¿Por qué?
 
-Esta arquitectura permite que el modelo Fine-Tuned se enfoque en **eficiencia**, mientras que el LLM aporta **capacidad de comprensión** en consultas complejas.  
-Esto resolverá el problema más importante de EcoMarket: **reducir los tiempos de respuesta que hoy son de  24 horas  a minutos** con el uso de LLM .  
-
+Esta arquitectura permite que el modelo Fine-Tuned se enfoque en **eficiencia** y resuelva en menor tiempo las consultas repetitivas que se reciben; mientras que, un modelo LLM (Open source o pagado) contribuye a brindar una  **capacidad de comprensión** en consultas complejas de los clientes o derivando a un Agente de Call Center, si asi se requiere.  
+Esto resolverá el problema más importante de EcoMarket: **Los tiempos de respuesta que hoy son de 24 horas** y reducirlos a   a **Minutos** con el uso de los agentes de respuesta usando LLM (Large Language Models), que han sido entrenados para esto.  
 En cuanto a costos, usar un esquema Híbrido permite:  
 - Operar con un **presupuesto moderado** para resolver la parte repetitiva.  
 - **Estimar un costo límite máximo** al usar un LLM en los casos complejos.  
 
-La elección del modelo se basa en un análisis de **costo-beneficio** centrado en la tarea específica que debe resolver cada componente.
+La elección del modelo se basa en un análisis de **costo-beneficio** centrado en la tarea específica que debe resolver cada uno de los componentes de la solución Híbrida que proponemos.
 
 ---
 
@@ -51,7 +50,7 @@ La elección del modelo se basa en un análisis de **costo-beneficio** centrado 
 
 | Criterio               | Justificación |
 |-------------------------|---------------|
-| **Necesidad de Precisión** | Alta. Una respuesta incorrecta sobre el estado de un pedido (ej: "entregado" cuando está "en camino") es crítica para la satisfacción. |
+| **Necesidad de Precisión** | Alta. Una respuesta incorrecta sobre el estado de un pedido (ej: "entregado" cuando está "en camino") es crítica para la satisfacción al Cliente. |
 | **Ventaja del Afinamiento** | Al aplicar Fine-Tuning sobre un modelo ligero base (como Mistral 7B), el modelo aprende el vocabulario, la estructura de las preguntas frecuentes y el tono de EcoMarket. Esto permite rapidez y precisión en su dominio. |
 | **Costo Operacional** | Bajo. Los modelos ligeros son más baratos de alojar en infraestructura propia o en la nube. Solo se activan cuando se requieren, manejando eficientemente el alto tamaño de preguntas que recibirá. |
 
@@ -65,13 +64,13 @@ La elección del modelo se basa en un análisis de **costo-beneficio** centrado 
 |-------------------------|---------------|
 | **Necesidad de Fluidez/Razonamiento** | Alta. Estas consultas exigen comprender el contexto emocional (empatía), sintetizar información de múltiples fuentes y seguir instrucciones complejas. |
 | **Ventaja de Rendimiento** | Modelos como GPT-4o y Gemini 1.5 Pro poseen razonamiento en cadena (*chain-of-thought*) y uso de herramientas (*Function Calling*). Esto es esencial para clasificar correctamente la queja y determinar a qué agente o departamento derivarla, proporcionando al humano un resumen pre-analizado. |
-| **Costo Operacional** | Moderado/Alto. El costo por token es mayor, pero al representar solo el 20% del volumen de tráfico, la inversión se justifica porque impacta directamente en la **Satisfacción del Cliente**. |
+| **Costo Operacional** | Moderado/Alto. El costo por token es mayor, pero al representar solo el 20% del volumen de tráfico, la inversión se justifica porque impacta directamente en la **Satisfacción al Cliente**. |
 
 ---
 
 ## 2. Arquitectura Propuesta
 
-Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada en el tráfico**, combinando modelos Fine-Tuned con LLM de Propósito General.
+Nuestra arquitectura es un **sistema de Orquestación** con **decisión basada en el tráfico**, combinando LLM con "Fine-Tuned" y LLM de Propósito General.
 
 ```mermaid
 graph TD
@@ -146,9 +145,9 @@ graph TD
 | Criterio               | Justificación |
 |-------------------------|---------------|
 | **Costo** | Optimización del TCO. El 80% del tráfico va a un LLM Fine-Tuned económico (ej. Mistral 7B). Solo se paga un modelo premium para el 20% de casos críticos. |
-| **Escalabilidad** | Escalabilidad paralela: el 80% se maneja con clusters de modelos ligeros en GPUs económicas. El 20% escala en la nube de proveedores de LLM de alto nivel (OpenAI/Google). |
-| **Facilidad de Integración** | Uso de estándares como RAG y Function Calling, lo que simplifica el desarrollo y reduce la curva de aprendizaje del equipo de ingeniería. |
-| **Calidad de Respuesta** | Precisión garantizada en el 80% repetitivo (Fine-Tuning + RAG) y razonamiento superior en el 20% complejo (uso modelos avanzado). |
+| **Escalabilidad** | La parte repetitiva que corresponde al 80%, se  puede manejar con un esquema de cluster uando equipos con GPUs económicas en DataCenter o por demanda en Nube Pública. La parte compleja, que corresponde al 20% , se trabaja en la nube de proveedores de LLM de alto nivel: OpenAI/Google. Donde se puede establecer un uso máximo pagado para brindar las respuestas a las solicitudes de este tipo. |
+| **Facilidad de Integración** | Uso de estándares como RAG y Function Calling, lo que simplifica el desarrollo y reduce la curva de aprendizaje del equipo de ingeniería del cliente. |
+| **Calidad de Respuesta** | Precisión garantizada en el 80% repetitivo (Fine-Tuning + RAG) y razonamiento superior en el 20% complejo con el uso  de modelos avanzados. |
 
 ---
 
@@ -156,29 +155,29 @@ graph TD
 
 ### 4. Fortalezas
 - **Reducción en los Tiempos de Respuesta de Servicio al Cliente:**  
-  Es definitivamente el principal beneficio. El 80% de las consultas se resuelven en minutos, no en horas, impactando de manera benéfica la métrica **Satisfacción del Cliente**.
-
+  Es definitivamente el principal beneficio. El 80% de las consultas se resuelven en minutos, no en horas, impactando de manera positiva la métrica de **Satisfacción del Cliente**, que es al final lo solicitado por la compañia.
+  
 - **Disponibilidad 24/7:**  
   Por ser un modelo "Fine Tuned LLM", estará disponible de manera continua, 7x24, para manejar el alto volumen de consultas repetitivas. Esto de nuevo, redunda de manera positiva en la **Satisfacción al Cliente**.
 
 - **Coherencia y Consistencia:**  
-  Se asegura una única fuente de información para el 80% de las preguntas, eliminando las variaciones y errores que surgen de la respuesta humana. En otras palabras, reducción en las respuestas erróneas, inconsistentes o demoras en las respuestas.
+  Se asegura una única fuente de información para el alto volumen repetitivo de preguntas, eliminando las variaciones y errores que surgen de las respuestas humanas. En otras palabras habrá una tendencia a la reducción en respuestas erróneas, inconsistentes o la demora en las respuestas a todas estas solicitudes que se reciban.
 
 - **Especialización de la Labor del Agente Humano:**  
-  Los agentes se liberan del trabajo repetitivo, pudiendo enfocarse solo en el 20% de los casos complejos, donde su empatía y pensamiento crítico son realmente valiosos.
+  Los agentes se liberan del trabajo repetitivo, pudiendo enfocarse solo en el 20% que corresponde a los casos complejos, donde su empatía y pensamiento crítico son realmente valiosos.
 
 ---
 
 ### 5. Limitaciones
 - **Limitación en la Empatía:**  
-  Si bien se ofrece un "fine tuned LLM" al igual que un Modelo LLM para responder a lo repetitivo y lo complejo. En los casos donde se requiere negociación o manejo de crisis, estos modelos no pueden replicar la inteligencia emocional de un agente humano. Es por eso, que el Agente de Call Center debe atender al cliente en estas situaciones.
+  Si bien se ofrece un "fine tuned LLM" al igual que un Modelo LLM para responder a lo repetitivo y lo complejo. En los casos donde se requiere negociación o manejo de crisis, estos modelos no pueden replicar la inteligencia emocional de un agente humano. Es por eso, que el Agente de Call Center debe atender al cliente en estas situaciones y no puede estar fuera del proceso.
 
 - **Dependencia en la Calidad de los Datos:**  
   Si queremos contar con una precisión mayor o igual al 80%, dependeremos completamente de la exactitud y limpieza de la **Base de Datos de EcoMarket**.  
-  Si hay errores, información incompleta, muy pocos datos o inventados, el **LLM Fine-Tuned** generará respuestas erroneas o equivocadas. Esto afectara la **Satisfacción al Cliente** y pondrá en riesgo la reputación de la compañia. Es lo siempre se maneja como lema con la Inteligencia Artificial: **Basura (Garbage)** genera **Basura (Garbage)**
+  Si hay errores, información incompleta, muy pocos datos o inexistentes, el **LLM Fine-Tuned** generará respuestas erroneas o equivocadas o empezará a alucinar. Esto afectara la **Satisfacción al Cliente** y pondrá en riesgo la reputación de la compañia. Es lo que siempre se maneja como lema en la Inteligencia Artificial: **Basura Entra (Garbage In)** -->  **Basura Sale (Garbage Out)**
 
 - **Costos de Entrenamiento (Fine-Tuning):**  
-  La inversión inicial en tiempo y recursos para afinar y hostear el modelo y genere una precisión mayor o igual al 80% puede ser significativa.Pero creemos que será menor a usar un modelo LLM que tiene costos de Tokens y llamadas API. Aquí sera importante, planear adecuadamente para que los costos no sean altos y echen por tierra este proyecto.
+ La inversión inicial en tiempo y recursos para afinar el modelo y alcanzar una precisión igual o superior al 80% puede ser considerable. Sin embargo, estimamos que este esfuerzo resultará más económico que depender de un LLM con costos recurrentes de tokens y llamadas a API. Por ello, será fundamental una planificación adecuada que mantenga los costos bajo control y garantice la viabilidad del proyecto.
 
 ---
 
@@ -199,11 +198,11 @@ graph TD
   4. Usar un "Servicio Intermedio" para evitar que alguno de los modelos LLM usados interactué directamente con la o las bases de datos de **EcoMarket**
 
 - **Impacto Laboral:**
-  Los cambios Tecnologicos o de algun otro tipo en las compañias siempre generan incertidumbre en la fuerza laboral activa. Tenemos clara que habrá reducción del personal actual de Agentes usado para el servicio al cliente. Debemos manter como objetivo claro: que se trata de **mejorar, empoderar y no reemplazar**. La propuesta debe ser vista por EcoMarket como una herramienta que eleva el trabajo de los agentes de soporte, permitiéndoles enfocarse en la calidad y la retención del cliente, en lugar de en la cantidad de tickets repetitivos que son lo que a hoy esta desbordado, haciendolo ineficiente y alta tasa de insatisfacción de los clientes; crítico para una compañia emergente como EcoMarket.
+  Los cambios Tecnologicos o de algun otro tipo en las compañias siempre generan incertidumbre en la fuerza laboral activa. Tenemos claro que habrá reducción del personal actual de Agentes usado para el servicio al cliente. Debemos manter como objetivo principal: que se trata de **mejorar, empoderar y no reemplazar**. La propuesta debe ser vista por EcoMarket como una herramienta que eleva el trabajo de los agentes de soporte, permitiéndoles enfocarse en la calidad y la retención del cliente, en lugar de en la cantidad de tickets repetitivos que son lo que a hoy esta desbordado, haciendolo ineficiente y con alta tasa de insatisfacción; lo que es crítico para una compañia emergente como EcoMarket.
 
   # Fase III - Aplicación de Ingeniería de Prompts
 
-  A continuación presentamos los propmts que hemos diseñado para los dos (2) requerimientos que se solicitan.
+  A continuación presentamos los **PROMPTS** que hemos diseñado para los dos (2) requerimientos que se solicitan.
 
   ### 1. Estado de Solicitud de Pedido
 
@@ -258,15 +257,17 @@ graph TD
 ### 3. Prueba de los PROMPTS
 
 En este Repositorio de GitHub hay un Google Colab Notebook que se llama **IAG_Taller1_Fase_3.ipynb**, donde hicimos las pruebas con los dos (2) Prompts diseñados. 
+
 El LLM (Large Language Model) que usamos fue: mistralai/Mistral-7B-Instruct-v0.2. 
 
-¿Por qué este LLM ?
-De los modelos que consultamos y revisamos, seleccionamos este por las siguientes razones:
-- Fue ajustado (fine-tuned) con ejemplos de instrucciones y respuestas humanas.
-- Está optimizado para seguir prompts tipo instrucciones, como los que tú estás usando:
+**¿Por qué este LLM ?**
+De los modelos que consultamos y revisamos, seleccionamos este en especial por las siguientes razones:
+- Fue ajustado (fine-tuned) con ejemplos de instrucciones y respuestas humanas, que es lo que tiene mayor relevancia al usarlo en la creación de PROMPTS.
+- Está optimizado para seguir PROMPTS *tipo instrucciones*, como los que estamos usando en el diseño:
     - “Actúa como un agente de servicio al cliente…”
     - “Responde en formato claro y conciso…”
     - “Devuélveme solo este campo…”
-- Y Produce respuestas más estructuradas, coherentes y útiles.
+- Y por último, pudimos notar que produce respuestas más estructuradas, coherentes y útiles en comparación con un modelo de transformers con BERT e inclusive algunos modelos de Generación de Texto.
 
-Para ejcutarlo solo se requiere dar **"Clic"** con el ratón en el icono **"Open Google Colab"** que aparece en el mismo archivo.
+### 4. Ejecución del Google Colab Notebook.
+Para ejcutarlo solo se requiere dar **"Clic"** con el ratón en el icono **"Open Google Colab"** que aparece en el archivo **IAG_Taller1_Fase_3.ipynb**
