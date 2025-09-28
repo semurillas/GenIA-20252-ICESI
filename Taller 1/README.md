@@ -255,4 +255,4 @@ Cliente: Hola, estoy devolviendo {producto_buscado} por {motivo}, ¿qué debo ha
 
 ### 3. Prueba de los PROMPTS
 
-Nosotros creamos un Google Colab Notebook que se llama IAG_Taller1_Fase_3, donde hicimos pruebas de los dos (2) Prompts diseñados. Este Google Colab Notebook esta en este repositorio de GitHUb y puede ser probado dando "Clic" con el ratón en el icono "Open Google Colab".
+En este Repositorio de GitHub hay un Google Colab Notebook que se llama **IAG_Taller1_Fase_3.ipynb**, donde hicimos las pruebas con los dos (2) Prompts diseñados. Para correerlo es solo dar "Clic" con el ratón en el icono "Open Google Colab" que aparece en el archivo.
