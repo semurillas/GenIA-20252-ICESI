@@ -269,4 +269,4 @@ De los modelos que consultamos y revisamos, seleccionamos este por las siguiente
     - “Devuélveme solo este campo…”
 - Y Produce respuestas más estructuradas, coherentes y útiles.
 
-Para ejcutarlo solo se requiere dar "Clic" con el ratón en el icono "Open Google Colab" que aparece en el mismo archivo.
+Para ejcutarlo solo se requiere dar **"Clic"** con el ratón en el icono **"Open Google Colab"** que aparece en el mismo archivo.
