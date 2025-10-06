@@ -1,15 +1,20 @@
-# 🧠 Fase 1: Selección de Componentes Clave del Sistema RAG — EcoMarket
+# 🧠 Fase 1: Selección de Componentes Clave del Sistema RAG para EcoMarket
 
 ---
 
 ## 🏗️ Contexto del Proyecto
 
-**EcoMarket** es una empresa en desarrollo que busca optimizar la gestión y acceso a su información interna mediante un sistema de **Generación Aumentada por Recuperación (RAG, Retrieval-Augmented Generation)**.  
+**EcoMarket**, una empresa dedicada a la venta de productos sostenibles y en pleno proceso de crecimiento, ha enfrentado recientemente cuellos de botella en su servicio de atención al cliente. En algunos casos, los tiempos de respuesta han llegado hasta las 24 horas, lo que ha incrementado el índice de insatisfacción de los usuarios.
 
-Este sistema permitirá a un **Large Language Model (LLM)** responder preguntas precisas basándose en documentos reales de la empresa —como descripciones de productos, políticas internas o lineamientos de sostenibilidad—, reduciendo errores y evitando respuestas no fundamentadas (*alucinaciones*).  
+Nosotros, como especialistas en Inteligencia Artificial Generativa, hemos iniciado una asistencia técnica para abordar este problema. En la primera fase realizada, propusimos el uso de Modelos de Lenguaje Extenso (LLM), Modelos de Embeddings y Bases de Datos Vectoriales, con el objetivo de reducir los tiempos de respuesta y, al mismo tiempo, mejorar la satisfacción del cliente.
 
-Como grupo de **estudiantes de la asignatura de Inteligencia Artificial Generativa**, proponemos la arquitectura inicial de este sistema RAG. En esta primera fase se abordan las decisiones críticas de **arquitectura** que determinarán su rendimiento, escalabilidad y costo.
+Los Large Language Models (LLM), si bien son potentes y de propósito general, no cuentan con conocimiento específico sobre la información interna de una empresa. Por esta razón, como equipo asesor, planteamos la implementación de un sistema de Generación Aumentada por Recuperación (RAG, Retrieval-Augmented Generation). Este enfoque permitirá que el LLM responda preguntas precisas basándose en documentos reales de la organización —como descripciones de productos, políticas internas o lineamientos de sostenibilidad—, reduciendo errores y evitando respuestas no fundamentadas (alucinaciones).
 
+En esta etapa, como parte del equipo que asiste a EcoMarket, debemos seleccionar los dos componentes fundamentales del sistema RAG:
+
+1. **El modelo de embeddings**, cuya elección dependerá de su precisión, costo y capacidad para manejar el idioma español.
+
+2. **La base de datos vectorial**, que debe ofrecer eficiencia en las búsquedas, buena escalabilidad y facilidad de integración con el sistema.
 ---
 
 ## 🎯 Objetivo de la Fase 1
@@ -79,17 +84,6 @@ Proponemos **ChromaDB** como base de datos vectorial inicial para EcoMarket.
 - **Costo cero:** al ser open source, no implica gastos de licencia o suscripción.  
 - **Ideal para un entorno en desarrollo:** permite concentrar esfuerzos en la optimización del flujo de embeddings y recuperación antes de escalar.  
 - **Compatibilidad con diferentes modelos:** se adapta fácilmente a cambios futuros de modelo de embeddings o infraestructura.
-
----
-
-### 2.3. 🚀 Ruta de Escalabilidad Futura
-
-En fases posteriores, EcoMarket podría considerar:
-- **Migrar a Qdrant**, si requiere búsquedas vectoriales a gran escala con filtrado avanzado de productos o categorías.  
-- **Adoptar pgvector**, si se desea integrar información vectorial directamente en su base de datos relacional principal (PostgreSQL).  
-- **Usar Pinecone Cloud**, en caso de crecimiento masivo y necesidad de un servicio administrado de alta disponibilidad.
-
----
 
 ## 🧠 3. Arquitectura RAG Propuesta
 
