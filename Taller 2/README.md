@@ -3,7 +3,7 @@
 
 <h3>Asignatura: Inteligencia Artificial Generativa</h3>
 
-<h3>Taller Práctico Nro. 1 </h3>
+<h3>Taller Práctico Nro. 2 </h3>
 
 <hr style="width:60%;">
 
