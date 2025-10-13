@@ -84,7 +84,8 @@ Proponemos **ChromaDB** como base de datos vectorial inicial para EcoMarket.
 - **Costo cero:** al ser open source, no implica gastos de licencia o suscripción.  
 - **Ideal para un entorno en desarrollo:** permite concentrar esfuerzos en la optimización del flujo de embeddings y recuperación antes de escalar.  
 - **Compatibilidad con diferentes modelos:** se adapta fácilmente a cambios futuros de modelo de embeddings o infraestructura.
-
+  
+---
 ## 🧠 3. Arquitectura RAG Propuesta
 
 El sistema RAG propuesto para EcoMarket seguirá la siguiente arquitectura base:
@@ -103,6 +104,8 @@ Vectores Numéricos
         │
         ▼
    LLM (Generación de Respuestas)
+
+```
 ---
 
 # 🧠 Fase 2: Construcción de la Base de Conocimiento (Indexación y Segmentación)
