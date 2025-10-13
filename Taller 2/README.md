@@ -112,13 +112,13 @@ Vectores Numéricos
 
 En esta fase se construye la base de conocimiento del sistema RAG (Retrieval-Augmented Generation). El proceso consiste en segmentar los documentos procesados y almacenarlos en una base de datos vectorial utilizando un modelo de embeddings especializado. Esta etapa es fundamental para que el sistema pueda recuperar información relevante de manera semántica ante una consulta del usuario.
 
-##🔹 1. Segmentación de los documentos
+## 1. Segmentación de los documentos
 
 Previo a la indexación, los textos son divididos en fragmentos manejables con el objetivo de optimizar la recuperación semántica. La segmentación se realiza empleando un Text Splitter, el cual corta los documentos en bloques con una longitud máxima controlada (por ejemplo, 1.000 caracteres) y un solapamiento entre ellos (por ejemplo, 200 caracteres). Este solapamiento permite preservar el contexto entre fragmentos contiguos y evita pérdida de información en los límites de los textos.
 
 Cada fragmento resultante mantiene una relación directa con el documento original, asegurando trazabilidad y precisión durante el proceso de recuperación posterior. El resultado de esta etapa son los documentos segmentados (final_docs), que sirven como insumo para la generación de embeddings.
 
-##🔹 2. Generación de embeddings con BGE-M3
+## 2. Generación de embeddings con BGE-M3
 
 Una vez segmentados los textos, se generan sus representaciones vectoriales mediante el modelo BGE-M3, alojado en Hugging Face. Este modelo convierte los fragmentos de texto en vectores de alta dimensión que capturan el significado semántico de cada fragmento.
 
@@ -132,7 +132,7 @@ encode_kwargs: incluye la normalización de los embeddings ('normalize_embedding
 
 Este proceso garantiza que los embeddings mantengan relaciones espaciales consistentes, permitiendo medir la similitud entre consultas y documentos.
 
-##🔹 3. Indexación en la base de datos vectorial (ChromaDB)
+## 3. Indexación en la base de datos vectorial (ChromaDB)
 
 Con los embeddings generados, se construye la base de datos vectorial utilizando ChromaDB. Esta herramienta almacena los vectores en un formato optimizado para búsquedas de similitud, lo cual permite recuperar los documentos más relevantes en función del significado de la consulta, no solo de coincidencias léxicas.
 
@@ -144,6 +144,6 @@ Se define un directorio local para persistir los datos (persist_directory="./chr
 
 A partir de la base Chroma creada, se construye un retriever, encargado de buscar los fragmentos más cercanos semánticamente a la consulta del usuario. En este caso, se define que recupere los tres documentos más relevantes (k=3) mediante una búsqueda basada en similitud de coseno.
 
-##🔹 4. Resultado final
+## 4. Resultado final
 
 Al finalizar la fase, la base vectorial queda configurada y lista para integrarse en el flujo del modelo RAG. Esta estructura permite que, ante una pregunta, el sistema recupere los fragmentos más semánticamente relacionados y los use como contexto para generar una respuesta precisa y fundamentada.
