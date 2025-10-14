@@ -17,6 +17,21 @@
 
 <h3>📅 Fecha: Octubre 13, 2025</h3>
 
+## 📂 Estructura del Repositorio
+
+| Archivo / Carpeta | Tipo | Descripción |
+|--------------------|------|-------------|
+| `Taller 2/Documentos/Manual_de_Uso_Productos_Ecologicos.pdf` | PDF | Documento ejemplo de Manuales de Uso de Productos de la compañia EcoMarket |
+| `Taller 2/Documentos/Politica_de_Devoluciones_EcoMarket.pdf` | PDF | Documento ejemplo de Políticas de Devoluciones de la compañia EcoMarket |
+| `Taller 2/Documentos/Terminos_y_Condiciones_Generales_de_Venta_EcoMarket.pdf` | PDF | Documento ejemplo de Términos y Condiciones Generales de Venta de la compañia EcoMarket |
+| `Taller 2/Documentos/faq_ecomarket.json` | JSON | Documento ejemplo de Preguntas Frecuentes recopiladas para la compañia EcoMarket |
+| `Taller 2/Documentos/inventario_productos_ecomarket.csv` | CSV | Documento ejemplo de Inventario de Productos de la compañia EcoMarket |
+| `Taller 2/Documentos/pedidos_ecomarket.csv` | CSV | Documento ejemplo de Estados de Pedidos de la compañia EcoMarket |
+| `Taller 2/Documentos/IAG_Taller_2_Fase3.ipynb` | Notebook (Colab / Jupyter) | Google Colab Notebook desarrollado para la Fase 3 de este Taller |
+| `Taller 2/Documentos/README.md` | Markdown | Este archivo explicativo, con las fases I, II y III del Taller Nro. 2 |
+
+
+
 # 🧠 Fase I: Selección de Componentes Clave del Sistema RAG para EcoMarket
 
 ---
