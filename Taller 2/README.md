@@ -17,7 +17,7 @@
 
 <h3>📅 Fecha: Octubre 13, 2025</h3>
 
-# 🧠 Fase 1: Selección de Componentes Clave del Sistema RAG para EcoMarket
+# 🧠 Fase I: Selección de Componentes Clave del Sistema RAG para EcoMarket
 
 ---
 
@@ -36,7 +36,7 @@ En esta etapa, como parte del equipo que asiste a EcoMarket, debemos seleccionar
 2. **La base de datos vectorial**, que debe ofrecer eficiencia en las búsquedas, buena escalabilidad y facilidad de integración con el sistema.
 ---
 
-## 🎯 Objetivo de la Fase 1
+## 🎯 Objetivo de la Fase I
 
 Antes de iniciar la implementación, es necesario definir los dos componentes principales del sistema RAG:
 
@@ -127,7 +127,7 @@ Vectores Numéricos
 ```
 ---
 
-# 🧠 Fase 2: Construcción de la Base de Conocimiento (Indexación y Segmentación)
+# 🧠 Fase II: Construcción de la Base de Conocimiento (Indexación y Segmentación)
 
 En esta fase se construye la base de conocimiento del sistema RAG (Retrieval-Augmented Generation). El proceso consiste en segmentar los documentos procesados y almacenarlos en una base de datos vectorial utilizando un modelo de embeddings especializado. Esta etapa es fundamental para que el sistema pueda recuperar información relevante de manera semántica ante una consulta del usuario.
 
@@ -166,3 +166,15 @@ A partir de la base Chroma creada, se construye un retriever, encargado de busca
 ## 4. Resultado final
 
 Al finalizar la fase, la base vectorial queda configurada y lista para integrarse en el flujo del modelo RAG. Esta estructura permite que, ante una pregunta, el sistema recupere los fragmentos más semánticamente relacionados y los use como contexto para generar una respuesta precisa y fundamentada.
+
+# 🧠 Fase III: Integración y Ejecución del Código
+
+Para esta fase hemos desarrollado el **Google Colab Notebook** con el nombre `IAG_Taller_2_Fase3.ipynb`, donde implementamos el **modelo LLM Mistral-7B Instruct** ([Hugging Face](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)), el mismo utilizado en el **Taller Práctico N.º 1**.  
+En este notebook construimos además un **modelo RAG (Retrieval-Augmented Generation)** empleando como **modelo de embeddings** `BAAI/bge-m3` y como **base de datos vectorial** `ChromaDB` y usando documentos que hemos creado que nos permiten que las busquedas se hagan en información propia de la compañia, permitiendo asi que sea el contexto usado por el Modelo LLM al responder a las preguntas que se simulan con usuarios o clientes.  
+
+El archivo puede ejecutarse directamente en **Google Colab**, configurando el entorno de ejecución con **T4 GPU** y **High RAM**.  
+Al ejecutar las celdas en orden, se podrá observar:  
+- La carga de librerías y módulos requeridos.  
+- La construcción del modelo RAG con `BAAI/bge-m3` y `ChromaDB` con seis (6) documentos: Inventario de Productos (Formato CSV), Estados de Pedidos (Formato CSV), Políticas de Devolución de EcoMarket (Formato PDF), Terminos Generales de Ventas de EcoMarket (Formato PDF), Manuales de Usuario de Productos (Formato PDF), y Preguntas Frecuentes (Formato JSON).
+- La carga del modelo LLM **Mistral-7B** en modo 4-bit.  
+- La generación de *prompts* y respuestas basadas en el modelo RAG, presentadas en el **Paso N.º 11**, donde se muestran los resultados obtenidos frente a las preguntas de prueba.
