@@ -1,8 +1,15 @@
 # app/app_streamlit.py
+import sys
 import os
 import streamlit as st
+
+# Asegura que Python reconozca el directorio raíz del proyecto
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 from agent.agente_ecomarket import initialize_ecomarket_agent
 from dotenv import load_dotenv
+
 
 # Cargar .env si existe
 load_dotenv()
@@ -11,6 +18,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     st.warning("Por favor proporciona tu OpenAI API key en el campo o en el archivo .env (OPENAI_API_KEY).")
     st.stop()
+
 
 
 st.set_page_config(page_title="EcoMarket - Agente Devoluciones", layout="centered")
