@@ -1,0 +1,40 @@
+# --- Archivos y carpetas a ignorar ---
+
+# Entornos virtuales
+venv/
+.env/
+
+# API Keys y configuración sensible
+*.env
+.env.*
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos generados por Streamlit
+.streamlit/
+logs/
+cache/
+
+# Base de datos ChromaDB (para evitar subir embeddings)
+chroma_db/
+vectorstore/
+db/
+*.sqlite
+*.db
+
+# Archivos de notebook y outputs
+*.ipynb_checkpoints/
+*.csv
+*.json
+
+# Configuración local de VSCode
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
